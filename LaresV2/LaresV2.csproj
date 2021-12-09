@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Discord.Net" Version="2.4.0" />
+    <PackageReference Include="Discord.Net.Labs" Version="3.4.7" />
+    <PackageReference Include="morelinq" Version="3.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DuckGame">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Duck Game\DuckGame.exe</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
