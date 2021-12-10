@@ -27,32 +27,298 @@ namespace LaresV2.Actions
         }
         public static async Task Testing()
         {
-            if (LaresUtils.Constants.Guilds.Guild.Lares.GetApplicationCommandsAsync().Result.Count == -1)
+            if (LaresUtils.Constants.Guilds.Guild.Lares.GetApplicationCommandsAsync().Result.Count > 0)
             await LaresUtils.Constants.Guilds.Guild.Lares.DeleteApplicationCommandsAsync();
+
+            await CMD.Create(new("convert", "A unit converter of many scopes.", (cmd) =>
+            {
+                var fieldOne = cmd.Data.Options.First();
+                var args = fieldOne.Options.ToArray();
+                var from = (string)args[1].Value;
+                var to = (string)args[2].Value;
+                var val = (double)args[3].Value;
+                double output = double.MinValue;
+                var embed = new EmbedBuilder().WithTitle($"{val} | {args[1].Name} => {args[2].Name}");
+                switch (fieldOne.Name)
+                {
+                    case "temperature":
+                        switch (from)
+                        {
+                            case "":
+
+                                break;
+                            default:
+                                return;
+                        }
+                        switch (to)
+                        {
+                            case "":
+
+                                break;
+                            default:
+                                return;
+                        }
+                        break;
+                    case "angle":
+                        switch (from)
+                        {
+                            case "":
+
+                                break;
+                            default:
+                                return;
+                        }
+                        switch (to)
+                        {
+                            case "":
+
+                                break;
+                            default:
+                                return;
+                        }
+                        break;
+                    case "length":
+                        switch (from)
+                        {
+                            case "":
+
+                                break;
+                            default:
+                                return;
+                        }
+                        switch (to)
+                        {
+                            case "":
+
+                                break;
+                            default:
+                                return;
+                        }
+                        break;
+                    case "mass":
+                        switch (from)
+                        {
+                            case "":
+
+                                break;
+                            default:
+                                return;
+                        }
+                        switch (to)
+                        {
+                            case "":
+
+                                break;
+                            default:
+                                return;
+                        }
+                        break;
+                    case "time":
+                        switch (from)
+                        {
+                            case "":
+
+                                break;
+                            default:
+                                return;
+                        }
+                        switch (to)
+                        {
+                            case "":
+
+                                break;
+                            default:
+                                return;
+                        }
+                        break;
+                    default:
+                        return;
+                }
+                cmd.RespondAsync(null, new[] { embed.WithDescription(output.ToString()).Build() });
+            }, LaresUtils.Constants.Guilds.ID.Lares, new SlashCommandOptionBuilder[]
+            {
+                new SlashCommandOptionBuilder()
+                    .WithName("temperature")
+                    .WithDescription("Converts between various types of temperature units")
+                    .WithType(ApplicationCommandOptionType.SubCommand)
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("from")
+                            .WithType(ApplicationCommandOptionType.String)
+                            .WithDescription("The unit to convert")
+                            .WithRequired(true)
+                                .AddChoice("celcius", "c")
+                                .AddChoice("fahrenheit", "f")
+                                .AddChoice("kelvin", "k")
+                         )
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("to")
+                            .WithType(ApplicationCommandOptionType.String)
+                            .WithDescription("The unit type to convert to")
+                            .WithRequired(true)
+                                .AddChoice("celcius", "c")
+                                .AddChoice("fahrenheit", "f")
+                                .AddChoice("kelvin", "k")
+                         )
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("value")
+                            .WithType(ApplicationCommandOptionType.Number)
+                            .WithDescription("The unit's value")
+                            .WithRequired(true)
+                         ),
+                new SlashCommandOptionBuilder()
+                    .WithName("angle")
+                    .WithDescription("Converts between the two types of angle units")
+                    .WithType(ApplicationCommandOptionType.SubCommand)
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("from")
+                            .WithType(ApplicationCommandOptionType.String)
+                            .WithDescription("The unit to convert")
+                            .WithRequired(true)
+                                .AddChoice("radians", "r")
+                                .AddChoice("degrees", "d")
+                         )
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("to")
+                            .WithType(ApplicationCommandOptionType.String)
+                            .WithDescription("The unit type to convert to")
+                            .WithRequired(true)
+                                .AddChoice("radians", "r")
+                                .AddChoice("degrees", "d")
+                         )
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("value")
+                            .WithType(ApplicationCommandOptionType.Number)
+                            .WithDescription("The unit's value")
+                            .WithRequired(true)
+                         ),
+                new SlashCommandOptionBuilder()
+                    .WithName("length")
+                    .WithDescription("Converts between the many length units")
+                    .WithType(ApplicationCommandOptionType.SubCommand)
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("from")
+                            .WithType(ApplicationCommandOptionType.String)
+                            .WithDescription("The unit to convert")
+                            .WithRequired(true)
+                                .AddChoice("centimeter", "cm")
+                                .AddChoice("millimeter", "mm")
+                                .AddChoice("meter", "m")
+                                .AddChoice("kilometer", "km")
+                                .AddChoice("inch", "in")
+                                .AddChoice("foot", "ft")
+                                .AddChoice("yard", "y")
+                                .AddChoice("mile", "M")
+                         )
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("to")
+                            .WithType(ApplicationCommandOptionType.String)
+                            .WithDescription("The unit type to convert to")
+                            .WithRequired(true)
+                                .AddChoice("centimeter", "cm")
+                                .AddChoice("millimeter", "mm")
+                                .AddChoice("meter", "m")
+                                .AddChoice("kilometer", "km")
+                                .AddChoice("inch", "in")
+                                .AddChoice("foot", "ft")
+                                .AddChoice("yard", "y")
+                                .AddChoice("mile", "M")
+                         )
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("value")
+                            .WithType(ApplicationCommandOptionType.Number)
+                            .WithDescription("The unit's value")
+                            .WithRequired(true)
+                         ),
+                new SlashCommandOptionBuilder()
+                    .WithName("mass")
+                    .WithDescription("Converts between mass units")
+                    .WithType(ApplicationCommandOptionType.SubCommand)
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("from")
+                            .WithType(ApplicationCommandOptionType.String)
+                            .WithDescription("The unit to convert")
+                            .WithRequired(true)
+                                .AddChoice("milligram", "mg")
+                                .AddChoice("gram", "g")
+                                .AddChoice("kilogram", "kg")
+                                .AddChoice("milligram", "mg")
+                                .AddChoice("ton", "t")
+                                .AddChoice("pound", "p")
+                                .AddChoice("ounce", "o")
+                         )
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("to")
+                            .WithType(ApplicationCommandOptionType.String)
+                            .WithDescription("The unit type to convert to")
+                            .WithRequired(true)
+                                .AddChoice("milligram", "mg")
+                                .AddChoice("gram", "g")
+                                .AddChoice("kilogram", "kg")
+                                .AddChoice("milligram", "mg")
+                                .AddChoice("ton", "t")
+                                .AddChoice("pound", "p")
+                                .AddChoice("ounce", "o")
+                         )
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("value")
+                            .WithType(ApplicationCommandOptionType.Number)
+                            .WithDescription("The unit's value")
+                            .WithRequired(true)
+                         ),
+                new SlashCommandOptionBuilder()
+                    .WithName("time")
+                    .WithDescription("Converts between various chronical units")
+                    .WithType(ApplicationCommandOptionType.SubCommand)
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("from")
+                            .WithType(ApplicationCommandOptionType.String)
+                            .WithDescription("The unit to convert")
+                            .WithRequired(true)
+                                .AddChoice("seconds", "s")
+                                .AddChoice("minutes", "m")
+                                .AddChoice("hours", "h")
+                                .AddChoice("days", "d")
+                                .AddChoice("weeks", "w")
+                                .AddChoice("months", "M")
+                                .AddChoice("years", "y")
+                         )
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("to")
+                            .WithType(ApplicationCommandOptionType.String)
+                            .WithDescription("The unit type to convert to")
+                            .WithRequired(true)
+                                .AddChoice("seconds", "s")
+                                .AddChoice("minutes", "m")
+                                .AddChoice("hours", "h")
+                                .AddChoice("days", "d")
+                                .AddChoice("weeks", "w")
+                                .AddChoice("months", "M")
+                                .AddChoice("years", "y")
+                         )
+                        .AddOption(new SlashCommandOptionBuilder()
+                            .WithName("value")
+                            .WithType(ApplicationCommandOptionType.Number)
+                            .WithDescription("The unit's value")
+                            .WithRequired(true)
+                         ),
+            }));
         }
         public static async Task MainLine()
         {
             await CMD.Create(new CMD("leave", "Leaves the current server or all servers.", (cmd) =>
             {
-                if (cmd.User.IsDev())
+                if ((bool)cmd.Data.Options.First().Value)
                 {
-                    if ((bool)cmd.Data.Options.First().Value)
+                    cmd.RespondAsync("leaving every f||hi||king server !!");
+                    foreach (var g in Program._client.Guilds)
                     {
-                        cmd.RespondAsync("leaving every f||hi||king server !!");
-                        foreach (var g in Program._client.Guilds)
-                        {
-                            g.LeaveAsync();
-                        }
-                    }
-                    else
-                    {
-                        cmd.RespondAsync($"Farewell, {cmd.Channel.GetGuild().Name}.");
-                        cmd.Channel.GetGuild().LeaveAsync();
+                        g.LeaveAsync();
                     }
                 }
                 else
                 {
-                    cmd.RespondAsync("you f||sry||ing retard, this is a dev only command...");
+                    cmd.RespondAsync($"Farewell, {cmd.Channel.GetGuild().Name}.");
+                    cmd.Channel.GetGuild().LeaveAsync();
                 }
             }, null, new SlashCommandOptionBuilder[]
             {
@@ -322,8 +588,8 @@ namespace LaresV2.Actions
                 .WithType(ApplicationCommandOptionType.SubCommand)
                     .AddOption("red",  ApplicationCommandOptionType.Integer, "the red color value to be used",  true)
                     .AddOption("green",ApplicationCommandOptionType.Integer, "the green color value to be used",true)
-                    .AddOption("blue", ApplicationCommandOptionType.Integer, "the blue color value to be used", true)
-               ,
+                    .AddOption("blue", ApplicationCommandOptionType.Integer, "the blue color value to be used", true),
+
             new SlashCommandOptionBuilder().WithName("hex")
                 .WithDescription("Uses a hex color format for the command")
                 .WithType(ApplicationCommandOptionType.SubCommand)
@@ -342,7 +608,9 @@ namespace LaresV2.Actions
             private Action<SocketSlashCommand> _onRun;
             public CMD(string Name, string Description, Action<SocketSlashCommand> OnRun, ulong? GuildID = null, params SlashCommandOptionBuilder[] Parameters)
             {
-                var builder = new SlashCommandBuilder().WithName(Name).WithDescription(Description);
+                var builder = new SlashCommandBuilder()
+                                    .WithName(Name)
+                                    .WithDescription(Description);
 
                 if (Parameters.Length > 0)
                 {
